@@ -265,23 +265,5 @@ class fun(commands.Cog,):
           await ctx.send(res[0]["excuse"]+"\nCategory:"+res[0]["category"])
 
 
-  @commands.command(aliases=[])
-  async def burn(self, ctx):
-    url = "https://v1.api.amethyste.moe/generate/approved"
-    payload = {'url': 'https://upload.wikimedia.org/wikipedia/fr/thumb/a/a0/Avatar_Logo.png/800px-Avatar_Logo.png'}
-    headers = {
-        'Authorization': 'Bearer fcadac2f9295348b9a22ff4573704a73616684ce8b3a6a640be5763cc9a1f20f7fb912451e7704b5f82dae2ccbf198cc63db72be9b9d5866379e4286dcb015c6',
-        'Content-Type': 'application/x-www-form-urlencoded'
-    }
-    async with aiohttp.ClientSession() as cs:
-        async with cs.post(url, data=payload, headers=headers) as r:
-            test = (await r.read())
-            _bytes = io.BytesIO(test)
-            print("sending")
-            await ctx.send(ctx.file(_bytes))
-            print("done")
-
-
-
 def setup(bot):
     bot.add_cog(fun(bot))
